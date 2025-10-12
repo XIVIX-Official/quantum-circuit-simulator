@@ -167,7 +167,7 @@ Before you begin, ensure you have the following installed:
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/XIVIX-Project/quantum-circuit-simulator.git
+git clone https://github.com/XIVIX-Official/quantum-circuit-simulator.git
 cd quantum-circuit-simulator
 ```
 
