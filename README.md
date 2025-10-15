@@ -2,6 +2,8 @@
 
 An interactive web application for building, simulating, and visualizing quantum circuits. It features a tap-and-place interface, a variety of quantum gates, real-time client-side simulation, and clear result visualizations.
 
+![Quantum Circuit Simulator Logo](./icons/icon-512x512.png)
+
 ---
 
 ## ✨ Features
