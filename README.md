@@ -1,13 +1,5 @@
 # Quantum Circuit Simulator
 
-<div align="center">
-  <h1 style="font-size: 2.5rem; font-weight: bold; background: linear-gradient(-45deg, #22d3ee, #3b82f6, #a855f7, #ec4899, #22d3ee); background-size: 400% 400%; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Codexus Technologies</h1>
-  <h2 style="font-size: 1.5rem; color: #9ca3af; margin-top: -0.5rem;">presents</h2>
-  <h1 style="font-size: 2rem; font-weight: bold; color: #e5e7eb;">Quantum Circuit Simulator</h1>
-</div>
-
-[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/XIVIX-Official/)
-
 An interactive web application for building, simulating, and visualizing quantum circuits. It features a tap-and-place interface, a variety of quantum gates, real-time client-side simulation, and clear result visualizations.
 
 ---
@@ -84,4 +76,5 @@ This is a pure client-side application with no build step required.
 
 This project is open source and available under the [MIT License](LICENSE).
 
+---
 **Powered by XIVIX**
