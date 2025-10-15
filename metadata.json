@@ -1,0 +1,5 @@
+{
+  "name": "Quantum Circuit Simulator",
+  "description": "An interactive web application for building, simulating, and visualizing quantum circuits. It features a drag-and-drop interface, a variety of quantum gates, real-time simulation, and result visualizations like histograms and state vectors.",
+  "requestFramePermissions": []
+}
