@@ -1,4 +1,5 @@
-from qiskit import QuantumCircuit, Aer, execute
+from qiskit import QuantumCircuit, execute
+from qiskit_aer import Aer
 from qiskit.quantum_info import Operator, Statevector
 from typing import List, Dict, Optional, Union
 import numpy as np

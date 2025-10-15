@@ -212,6 +212,44 @@ cp .env.example .env
 npm --version
 ```
 
+### Without step 2 and step 3(the easiest way): Using Environment Scripts
+
+The project includes two utility scripts to help manage your development environment:
+
+#### cleanup.bat
+This script helps clean up your development environment:
+```batch
+cleanup.bat
+```
+What it does:
+- Deactivates any active Python virtual environment
+- Removes the `backend/venv` directory if it exists
+- Removes the `frontend/node_modules` directory if it exists
+- Cleans up any temporary files
+- Prepares your environment for a fresh installation
+
+Use this script when:
+- You want to do a clean reinstall
+- You're experiencing dependency conflicts
+- You want to reset your development environment
+
+#### start.bat
+This script automates the project startup process:
+```batch
+start.bat
+```
+What it does:
+- Checks if Python and Node.js are installed
+- Creates and activates Python virtual environment if needed
+- Installs Python dependencies from requirements.txt
+- Installs npm packages for the frontend
+- Starts both backend and frontend servers
+
+Use this script to:
+- Start the development environment
+- Ensure all dependencies are properly installed
+- Launch both backend and frontend servers
+
 ### Step 4: Configuration
 
 Update the `.env` files in both backend and frontend with your configuration:
