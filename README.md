@@ -144,6 +144,8 @@ quantum-circuit-simulator/
 ├── Dockerfile                       # Backend Docker image
 ├── LICENSE
 ├── README.md                        # This file
+├── cleanup.bat
+├── start.bat
 └── ROADMAP.md                       # Project roadmap
 
 ```
