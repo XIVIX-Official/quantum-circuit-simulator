@@ -83,6 +83,7 @@ This is a React TypeScript application with Vite.
 ├── package.json      # Project dependencies and scripts
 ├── metadata.json     # Application metadata
 └── types.ts          # TypeScript type definitions
+```
 
 ## 🛠️ How to Use
 
