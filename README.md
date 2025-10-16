@@ -25,18 +25,37 @@ An interactive web application for building, simulating, and visualizing quantum
 
 ## 🚀 Getting Started
 
-This is a pure client-side application with no build step required.
+This is a React TypeScript application with Vite.
 
 1.  **Clone the repository:**
     ```bash
     git clone https://github.com/XIVIX-Official/quantum-circuit-simulator.git
     ```
+
 2.  **Navigate to the directory:**
     ```bash
     cd quantum-circuit-simulator
     ```
-3.  **Open `index.html` in your web browser.**
-    - For the best development experience, use a live server extension (like "Live Server" in VS Code) to automatically reload on changes.
+
+3.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+4.  **Start the development server:**
+    ```bash
+    npm run dev
+    ```
+
+5.  **Open the application:**
+    - The development server will provide a local URL (typically `http://localhost:5173`)
+    - Open this URL in your web browser
+    
+6.  **For production build:**
+    ```bash
+    npm run build
+    npm run preview    # To preview the production build
+    ```
 
 ## 📁 Project Structure
 
@@ -51,17 +70,19 @@ This is a pure client-side application with no build step required.
 │   ├── LearnScreen.tsx
 │   ├── Logo.tsx
 │   └── ResultsDisplay.tsx
-├── lib/                # Utility libraries
-│   └── complex.ts      # Complex number arithmetic
-├── services/           # Core application logic
+├── lib/               # Utility libraries
+│   └── complex.ts     # Complex number arithmetic
+├── services/          # Core application logic
 │   └── quantumSimulator.ts # The quantum simulation engine
-├── App.tsx             # Main application component
-├── constants.ts        # Gate properties, matrices, etc.
-├── index.html          # Main HTML entry point
-├── index.tsx           # React root renderer
-├── metadata.json       # Application metadata
-└── types.ts            # TypeScript type definitions
-```
+├── App.tsx            # Main application component
+├── constants.ts       # Gate properties, matrices, etc.
+├── index.html         # Main HTML entry point
+├── index.tsx         # React root renderer
+├── vite.config.ts    # Vite configuration
+├── tsconfig.json     # TypeScript configuration
+├── package.json      # Project dependencies and scripts
+├── metadata.json     # Application metadata
+└── types.ts          # TypeScript type definitions
 
 ## 🛠️ How to Use
 
