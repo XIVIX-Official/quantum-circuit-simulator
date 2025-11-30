@@ -8,7 +8,7 @@ function tensorProduct(A: Complex[][], B: Complex[][]): Complex[][] {
     const n = A[0].length;
     const p = B.length;
     const q = B[0].length;
-    
+
     const result: Complex[][] = Array(m * p).fill(0).map(() => Array(n * q).fill({ re: 0, im: 0 }));
 
     for (let i = 0; i < m; i++) {
@@ -55,7 +55,7 @@ function applySingleQubitGate(statevector: Complex[], gate: Complex[][], targetQ
 
 function getFullSystemMatrix(gateMatrix: Complex[][], targetQubit: number, numQubits: number): Complex[][] {
     let systemMatrix = targetQubit === 0 ? gateMatrix : IDENTITY_MATRIX;
-    for(let i = 1; i < numQubits; i++) {
+    for (let i = 1; i < numQubits; i++) {
         systemMatrix = tensorProduct(i === targetQubit ? gateMatrix : IDENTITY_MATRIX, systemMatrix);
     }
     return systemMatrix;
@@ -68,12 +68,15 @@ function applyCnotGate(statevector: Complex[], controlQubit: number, targetQubit
     const targetMask = 1 << (numQubits - 1 - targetQubit);
 
     for (let i = 0; i < statevector.length; i++) {
+        // Only process when control qubit is 1
         if ((i & controlMask) !== 0) {
             const targetState = i ^ targetMask;
-            // Swap amplitudes
-            const temp = newStatevector[i];
-            newStatevector[i] = newStatevector[targetState];
-            newStatevector[targetState] = temp;
+            // Only swap each pair once (when i < targetState) to avoid swapping twice
+            if (i < targetState) {
+                const temp = newStatevector[i];
+                newStatevector[i] = newStatevector[targetState];
+                newStatevector[targetState] = temp;
+            }
         }
     }
     return newStatevector;
@@ -125,7 +128,7 @@ export function runSimulation(circuit: Circuit, numQubits: number): SimulationRe
 
         // A better simulator would handle simultaneous gates, but for simplicity, we apply sequentially.
         // This is an approximation but works for simple circuits.
-        
+
         // Single qubit gates and controls
         for (const gate of gatesInStep) {
             if (gate.type === 'TARGET' || gate.type === 'SWAP_TARGET') continue;
@@ -134,9 +137,9 @@ export function runSimulation(circuit: Circuit, numQubits: number): SimulationRe
             if (gateProps.matrix) {
                 statevector = applySingleQubitGate(statevector, gateProps.matrix, gate.qubit, numQubits);
             } else if (gate.type === 'CNOT' && gate.target !== undefined) {
-                 statevector = applyCnotGate(statevector, gate.qubit, gate.target, numQubits);
+                statevector = applyCnotGate(statevector, gate.qubit, gate.target, numQubits);
             } else if (gate.type === 'SWAP' && gate.target !== undefined) {
-                 statevector = applySwapGate(statevector, gate.qubit, gate.target, numQubits);
+                statevector = applySwapGate(statevector, gate.qubit, gate.target, numQubits);
             }
         }
     }
@@ -144,7 +147,7 @@ export function runSimulation(circuit: Circuit, numQubits: number): SimulationRe
     const probabilities = statevector.map(c => C.magnitudeSq(c));
     const probSum = probabilities.reduce((a, b) => a + b, 0);
     if (Math.abs(probSum - 1.0) > 1e-9) {
-      console.warn("Probabilities do not sum to 1:", probSum);
+        console.warn("Probabilities do not sum to 1:", probSum);
     }
 
     // Measurement

@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView, Pressable, SafeAreaView, StatusBar 
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeInDown, FadeIn } from 'react-native-reanimated';
 import { useTheme } from '../contexts/ThemeContext';
+import { NativeAdComponent } from './NativeAd';
 import { spacing, borderRadius, typography, shadows } from '../theme';
 
 interface LearnScreenProps {
@@ -117,6 +118,12 @@ export const LearnScreen: React.FC<LearnScreenProps> = ({ onBack }) => {
                                 The histogram shows two bars of equal height at |0⟩ and |1⟩—both at 50%! You just created a perfect quantum coin flip. This is called <Text style={[styles.bold, { color: colors.text.primary }]}>superposition</Text>.
                             </Text>
                         </View>
+
+                        <View style={[styles.tipBox, { backgroundColor: colors.background.tertiary }]}>
+                            <Text style={[styles.tipText, { color: colors.text.primary }]}>
+                                🎲 <Text style={[styles.bold, { color: colors.text.primary }]}>Important:</Text> These percentages show probabilities, not certainties! Run the simulation multiple times—you might see slightly different numbers each time (like 48% vs 52%). That's quantum randomness in action!
+                            </Text>
+                        </View>
                     </TutorialCard>
 
                     {/* NOT Gate */}
@@ -156,6 +163,11 @@ export const LearnScreen: React.FC<LearnScreenProps> = ({ onBack }) => {
                             </Text>
                         </View>
                     </TutorialCard>
+
+                    {/* Native Ad - Placed between lessons for natural flow */}
+                    <Animated.View entering={FadeInDown.delay(350).springify()}>
+                        <NativeAdComponent />
+                    </Animated.View>
 
                     {/* Entanglement */}
                     <TutorialCard title="Lesson 3: Quantum Entanglement—The Magic Link" emoji="🔗" delay={400}>
@@ -239,7 +251,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     header: {
-        paddingTop: spacing['2xl'],
+        paddingTop: spacing['4xl'],
         paddingBottom: spacing.xl,
         paddingHorizontal: spacing.lg,
     },

@@ -20,6 +20,9 @@ dist
 .env
 .env.local
 
+# Private Documentation
+PRIVATE_README.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

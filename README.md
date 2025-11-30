@@ -100,15 +100,19 @@ An interactive mobile application for building, simulating, and visualizing quan
 │   ├── InfoPanel.tsx       # Gate information display
 │   ├── LearnScreen.tsx     # Interactive tutorials
 │   ├── Logo.tsx            # Animated app logo
+│   ├── NativeAd.tsx        # AdMob native advanced ad component
 │   └── ResultsDisplay.tsx  # Simulation results with tabs
 ├── lib/                    # Utility libraries
 │   └── complex.ts          # Complex number operations
 ├── services/               # Business logic
-│   └── quantumSimulator.ts # Quantum circuit simulation engine
+│   ├── quantumSimulator.ts # Quantum circuit simulation engine
+│   └── adMobConfig.ts      # AdMob configuration
 ├── App.tsx                 # Main app component
 ├── constants.ts            # Gate properties and matrices
 ├── theme.ts                # Design system (colors, typography, spacing)
 ├── types.ts                # TypeScript definitions
+├── .env.example            # Environment variables template
+├── .env.local              # Local environment (gitignored)
 ├── index.js                # React Native entry point
 ├── app.json                # Expo configuration
 └── package.json            # Dependencies and scripts
@@ -126,6 +130,7 @@ An interactive mobile application for building, simulating, and visualizing quan
 - **Expo Haptics**: Physical feedback
 - **React Native SVG**: Custom graphics
 - **React Native Chart Kit**: Data visualization
+- **React Native Google Mobile Ads**: AdMob integration
 
 ## 🧪 Quantum Gates Reference
 
@@ -139,10 +144,14 @@ An interactive mobile application for building, simulating, and visualizing quan
 - **SWAP**: Exchanges states of two qubits
 - **M (Measure)**: Collapses superposition to classical bit
 
+### Tap any gate in the app to see beginner-friendly explanations!
+
+---
+
 ## 📊 Simulation
 
 The app simulates quantum circuits using:
-- State vector propagation
+- State vector propagation (accurate quantum mechanics)
 - Complex number arithmetic
 - Tensor product operations
 - 1024-shot measurement sampling

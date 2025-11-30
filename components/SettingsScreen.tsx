@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated';
 import * as Haptics from 'expo-haptics';
 import { useTheme } from '../contexts/ThemeContext';
+import { NativeAdComponent } from './NativeAd';
 import { spacing, borderRadius, typography, shadows } from '../theme';
 
 export const SettingsScreen: React.FC = () => {
@@ -78,6 +79,11 @@ export const SettingsScreen: React.FC = () => {
                             </View>
                         </View>
                     </Animated.View>
+
+                    {/* Native Ad - Placed at bottom of settings */}
+                    <Animated.View entering={FadeInDown.delay(300)}>
+                        <NativeAdComponent />
+                    </Animated.View>
                 </View>
             </LinearGradient>
         </SafeAreaView>
@@ -92,7 +98,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     header: {
-        paddingTop: spacing['2xl'],
+        paddingTop: spacing['4xl'],
         paddingBottom: spacing.lg,
         paddingHorizontal: spacing.lg,
         alignItems: 'center',

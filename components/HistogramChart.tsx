@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { BarChart } from 'react-native-chart-kit';
 import { colors, spacing, typography, borderRadius } from '../theme';
 
@@ -20,6 +20,11 @@ export const HistogramChart: React.FC<HistogramChartProps> = ({ data }) => {
             data: values,
         }],
     };
+
+    // Calculate dynamic width based on number of bars
+    // Each bar needs ~60px of space for proper visibility
+    const minWidth = screenWidth;
+    const dynamicWidth = Math.max(minWidth, labels.length * 60);
 
     const chartConfig = {
         backgroundColor: colors.background.card,
@@ -49,26 +54,35 @@ export const HistogramChart: React.FC<HistogramChartProps> = ({ data }) => {
 
     return (
         <View style={styles.container}>
-            <BarChart
-                data={chartData}
-                width={screenWidth}
-                height={220}
-                yAxisLabel=""
-                yAxisSuffix=""
-                chartConfig={chartConfig}
-                style={styles.chart}
-                fromZero
-                showValuesOnTopOfBars
-                withInnerLines
-            />
+            <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={true}
+                bounces={false}
+                contentContainerStyle={styles.scrollContent}
+            >
+                <BarChart
+                    data={chartData}
+                    width={dynamicWidth}
+                    height={220}
+                    yAxisLabel=""
+                    yAxisSuffix=""
+                    chartConfig={chartConfig}
+                    style={styles.chart}
+                    fromZero
+                    showValuesOnTopOfBars
+                    withInnerLines
+                />
+            </ScrollView>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
         marginVertical: spacing.md,
+    },
+    scrollContent: {
+        paddingRight: spacing.md, // Extra padding at the end
     },
     chart: {
         borderRadius: borderRadius.md,
