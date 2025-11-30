@@ -1,22 +1,50 @@
 import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import type { GateType } from '../types';
 import { GATE_PROPERTIES } from '../constants';
-import { MeasureIcon } from './icons/MeasureIcon';
+import { layout, borderRadius, typography } from '../theme';
 
 interface GateProps {
   type: GateType;
+  size?: number;
 }
 
-export const Gate: React.FC<GateProps> = ({ type }) => {
-  const { label, color } = GATE_PROPERTIES[type];
-
-  const isIcon = type === 'M';
+export const Gate: React.FC<GateProps> = ({ type, size = layout.gateSize }) => {
+  const gateProps = GATE_PROPERTIES[type];
 
   return (
-    <div
-      className={`w-10 h-10 rounded-md flex items-center justify-center font-bold text-white text-lg shadow-md ${color} transition-transform transform group-hover:scale-110`}
-    >
-      {isIcon ? <MeasureIcon className="w-6 h-6" /> : label}
-    </div>
+    <View style={[
+      styles.container,
+      {
+        width: size,
+        height: size,
+        backgroundColor: gateProps.color,
+        borderRadius: borderRadius.md,
+      }
+    ]}>
+      <Text style={[
+        styles.label,
+        { fontSize: size * 0.5 }
+      ]}>
+        {gateProps.label}
+      </Text>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  label: {
+    color: '#ffffff',
+    fontWeight: typography.weights.bold,
+    textAlign: 'center',
+  },
+});

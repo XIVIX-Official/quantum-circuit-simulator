@@ -1,43 +1,85 @@
-
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from 'recharts';
-import { SIMULATION_SHOTS } from '../constants';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { BarChart } from 'react-native-chart-kit';
+import { colors, spacing, typography, borderRadius } from '../theme';
 
 interface HistogramChartProps {
     data: Record<string, number>;
 }
 
 export const HistogramChart: React.FC<HistogramChartProps> = ({ data }) => {
-    const chartData = Object.entries(data)
-        .map(([name, value]) => ({
-            name,
-            // FIX: Explicitly cast value to a number to resolve the TypeScript error.
-            probability: Number(value) / SIMULATION_SHOTS,
-        }))
-        .sort((a, b) => a.name.localeCompare(b.name));
+    const screenWidth = Dimensions.get('window').width - 80; // Account for padding
 
-    const colors = ['#22d3ee', '#67e8f9', '#a5f3fc', '#cffafe'];
+    // Prepare data for chart
+    const labels = Object.keys(data).sort();
+    const values = labels.map(label => data[label]);
+
+    const chartData = {
+        labels: labels,
+        datasets: [{
+            data: values,
+        }],
+    };
+
+    const chartConfig = {
+        backgroundColor: colors.background.card,
+        backgroundGradientFrom: colors.background.card,
+        backgroundGradientTo: colors.background.elevated,
+        decimalPlaces: 0,
+        color: (opacity = 1) => `rgba(6, 182, 212, ${opacity})`,
+        labelColor: (opacity = 1) => `rgba(203, 213, 225, ${opacity})`,
+        style: {
+            borderRadius: borderRadius.md,
+        },
+        barPercentage: 0.7,
+        propsForBackgroundLines: {
+            strokeDasharray: '',
+            stroke: colors.text.disabled,
+            strokeWidth: 0.5,
+        },
+    };
+
+    if (labels.length === 0) {
+        return (
+            <View style={styles.emptyContainer}>
+                <Text style={styles.emptyText}>No data to display</Text>
+            </View>
+        );
+    }
 
     return (
-        <ResponsiveContainer width="100%" height={200}>
-            <BarChart data={chartData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
-                <XAxis dataKey="name" stroke="#9ca3af" fontSize={12} tickLine={false} axisLine={false} />
-                <YAxis stroke="#9ca3af" fontSize={12} tickFormatter={(tick) => tick.toFixed(2)} tickLine={false} axisLine={false} />
-                <Tooltip
-                    cursor={{ fill: 'rgba(107, 114, 128, 0.2)' }}
-                    contentStyle={{
-                        backgroundColor: '#1f2937',
-                        borderColor: '#374151',
-                        borderRadius: '0.5rem',
-                    }}
-                    labelStyle={{ color: '#e5e7eb' }}
-                />
-                <Bar dataKey="probability" name="Probability" fill="#22d3ee" radius={[4, 4, 0, 0]}>
-                    {chartData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
-                    ))}
-                </Bar>
-            </BarChart>
-        </ResponsiveContainer>
+        <View style={styles.container}>
+            <BarChart
+                data={chartData}
+                width={screenWidth}
+                height={220}
+                yAxisLabel=""
+                yAxisSuffix=""
+                chartConfig={chartConfig}
+                style={styles.chart}
+                fromZero
+                showValuesOnTopOfBars
+                withInnerLines
+            />
+        </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        marginVertical: spacing.md,
+    },
+    chart: {
+        borderRadius: borderRadius.md,
+    },
+    emptyContainer: {
+        height: 220,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    emptyText: {
+        color: colors.text.tertiary,
+        fontSize: typography.sizes.base,
+    },
+});

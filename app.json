@@ -1,0 +1,32 @@
+{
+    "expo": {
+        "name": "Quantum Circuit Simulator",
+        "slug": "quantum-circuit-simulator",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./icons/icon-512x512.png",
+        "userInterfaceStyle": "automatic",
+        "splash": {
+            "image": "./icons/icon-512x512.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#0f172a"
+        },
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.xivix.quantumcircuit"
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./icons/icon-512x512.png",
+                "backgroundColor": "#0f172a"
+            },
+            "package": "com.xivix.quantumcircuit"
+        },
+        "web": {
+            "favicon": "./icons/icon-512x512.png"
+        }
+    }
+}
