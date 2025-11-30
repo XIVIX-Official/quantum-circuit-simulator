@@ -154,7 +154,6 @@ The app simulates quantum circuits using:
 - [ ] More quantum gates (Toffoli, Fredkin)
 - [ ] Custom gate builder
 - [ ] Quantum algorithm presets
-- [ ] Dark/Light theme toggle
 - [ ] Circuit export (OpenQASM)
 
 ## 📄 License
