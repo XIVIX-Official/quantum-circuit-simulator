@@ -1,32 +1,47 @@
 {
-    "expo": {
-        "name": "Quantum Circuit Simulator",
-        "slug": "quantum-circuit-simulator",
-        "version": "1.0.0",
-        "orientation": "portrait",
-        "icon": "./icons/icon-512x512.png",
-        "userInterfaceStyle": "automatic",
-        "splash": {
-            "image": "./icons/icon-512x512.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#0f172a"
-        },
-        "assetBundlePatterns": [
-            "**/*"
-        ],
-        "ios": {
-            "supportsTablet": true,
-            "bundleIdentifier": "com.xivix.quantumcircuit"
-        },
-        "android": {
-            "adaptiveIcon": {
-                "foregroundImage": "./icons/icon-512x512.png",
-                "backgroundColor": "#0f172a"
-            },
-            "package": "com.xivix.quantumcircuit"
-        },
-        "web": {
-            "favicon": "./icons/icon-512x512.png"
+  "expo": {
+    "name": "Quantum Circuit Simulator",
+    "slug": "quantum-circuit-simulator",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./icons/icon-512x512.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./icons/icon-512x512.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0f172a"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.xivix.quantumcircuit"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./icons/icon-512x512.png",
+        "backgroundColor": "#0f172a"
+      },
+      "package": "com.xivix.quantumcircuit"
+    },
+    "web": {
+      "favicon": "./icons/icon-512x512.png"
+    },
+    "plugins": [
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-3940256099942544~3347511713",
+          "iosAppId": "ca-app-pub-3940256099942544~1458002511"
         }
+      ]
+    ],
+    "extra": {
+      "EXPO_PUBLIC_ADMOB_ANDROID_NATIVE_AD_ID": "ca-app-pub-3940256099942544/2247696110",
+      "EXPO_PUBLIC_ADMOB_IOS_NATIVE_AD_ID": "ca-app-pub-3940256099942544/3986624511",
+      "EXPO_PUBLIC_ADMOB_ANDROID_APP_ID": "ca-app-pub-3940256099942544~3347511713",
+      "EXPO_PUBLIC_ADMOB_IOS_APP_ID": "ca-app-pub-3940256099942544~1458002511"
     }
+  }
 }

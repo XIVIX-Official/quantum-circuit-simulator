@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useMemo } from 'react';
-import { View, Text, StyleSheet, Pressable, Modal, SafeAreaView, StatusBar } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Modal, SafeAreaView, StatusBar, ScrollView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
 import Animated, { FadeIn, SlideInDown } from 'react-native-reanimated';
@@ -10,6 +10,7 @@ import { LearnScreen } from './components/LearnScreen';
 import { SettingsScreen } from './components/SettingsScreen';
 import { BottomNavigation } from './components/BottomNavigation';
 import { AnimatedLogo } from './components/AnimatedLogo';
+import { NativeAdComponent } from './components/NativeAd';
 import { useTheme } from './contexts/ThemeContext';
 import { runSimulation } from './services/quantumSimulator';
 import type { Circuit, GateType, PlacedGate, SimulationResult } from './types';
@@ -212,7 +213,12 @@ export const MainApp: React.FC = () => {
                     </Modal>
 
                     {/* Main Content */}
-                    <View style={styles.main}>
+                    <ScrollView
+                        style={styles.mainScrollView}
+                        contentContainerStyle={styles.mainScrollContent}
+                        showsVerticalScrollIndicator={true}
+                        bounces={true}
+                    >
                         {/* Circuit Board */}
                         <Animated.View entering={FadeIn.delay(100)} style={styles.circuitSection}>
                             <CircuitBoard
@@ -260,7 +266,14 @@ export const MainApp: React.FC = () => {
                             />
                         </Animated.View>
 
-                    </View>
+                        {/* Native Ad - Strategically placed for revenue */}
+                        <Animated.View entering={FadeIn.delay(400)}>
+                            <NativeAdComponent />
+                        </Animated.View>
+
+                        {/* Bottom Padding to ensure content is not hidden by FABs */}
+                        <View style={styles.bottomSpacer} />
+                    </ScrollView>
 
                     {/* Results Modal */}
                     <ResultsDisplay
@@ -320,13 +333,22 @@ const styles = StyleSheet.create({
     },
     header: {
         alignItems: 'center',
-        paddingTop: spacing.xl,
+        paddingTop: spacing['3xl'],
         paddingBottom: spacing.md,
     },
     main: {
         flex: 1,
+    },
+    mainScrollView: {
+        flex: 1,
+    },
+    mainScrollContent: {
         padding: spacing.md,
         gap: spacing.sm,
+        paddingBottom: spacing['5xl'], // Extra padding for FABs
+    },
+    bottomSpacer: {
+        height: 180, // Space for FABs
     },
     circuitSection: {
         minHeight: 300,
